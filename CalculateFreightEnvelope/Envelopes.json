@@ -1,0 +1,42 @@
+﻿[
+  {
+    "name": "XS",
+    "length": 160,
+    "width": 110,
+    "depth": 20,
+    "weight": 2200,
+    "price": 2.99
+  },
+  {
+    "name": "S",
+    "length": 210,
+    "width": 150,
+    "depth": 20,
+    "weight": 2200,
+    "price": 2.99
+  },
+  {
+    "name": "M",
+    "length": 260,
+    "width": 180,
+    "depth": 20,
+    "weight": 2200,
+    "price": 5.90
+  },
+  {
+    "name": "L",
+    "length": 360,
+    "width": 270,
+    "depth": 20,
+    "weight": 2200,
+    "price": 8.50
+  },
+  {
+    "name": "XL",
+    "length": 470,
+    "width": 350,
+    "depth": 20,
+    "weight": 2200,
+    "price": 15
+  }
+]

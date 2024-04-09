@@ -1,84 +1,63 @@
-﻿static  void CalculateFreight(int l, int b, int h, int w)
+﻿using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
+
+namespace CalculateFreightEnvelope;
+
+public class PackageData
 {
-    int lentgh = l;
-    int breadth = b;
-    int depth = h;
-    int weight = w;
+    public string Info { get; set; } = string.Empty;
+    public List<Package>? Packages { get; set; } = null;
+}
 
+public class Package
+{
+    public string? Description { get; set; }
+    public List<int>? Dimensions { get; set; } = null;
+    public double Weight { get; set; }
+}
 
-    // up to 35cm x 25cm x 7cm
-    // under 350g
-    if ( lentgh <= 350 && breadth <= 70 && depth <= 250)
+class Program
+{
+    private static void Main()
     {
-        if (weight <= 20 && breadth <= 20)
+        IConfiguration configuration = new ConfigurationBuilder()
+            .AddJsonFile("AppSettings.json")
+            .Build();
+
+        string jsonFile = configuration["EnvelopesJSON"] ?? throw new ArgumentException("Missing EnvelopesJSON file path in AppSettings.json");
+        string itemsJson = configuration["ItemsJSON"] ?? throw new ArgumentException("Missing ItemsJSON file path in AppSettings.json");
+
+        List<Envelopes> envelopeSizes = Envelopes.LoadEnvelopeSizes(jsonFile);
+
+        string json;
+        using (StreamReader sr = new StreamReader(itemsJson))
         {
-            
+            json = sr.ReadToEnd();
         }
-        else if (weight is > 20 and <= 50 && breadth <= 20)
-        {
-            
-        }
-        else if (weight is > 50 and <= 100 && breadth <= 20)
-        {
-            
-        }
-        else if (weight is > 100 and <= 350 &&  breadth <= 20)
-        {
-            
-        }
-        
-        if (weight <= 20 && breadth <= 20)
-        {
-            
-        }
-        else if (weight is > 20 and <= 50 && breadth is > 20 and <= 70)
-        {
-            
-        }
-        else if (weight is > 50 and <= 100 && breadth is > 20 and <= 70)
-        {
-            
-        }
-        else if (weight is > 100 and <= 350 &&  breadth is > 20 and <= 70)
-        {
-            
-        }
+        PackageData? packageData = JsonConvert.DeserializeObject<PackageData>(json);
+
+        // Iterate through each package and find the appropriate envelope size
+        if (packageData != null)
+            foreach (Package package in packageData.Packages)
+            {
+                double length = package.Dimensions[0];
+                double width = package.Dimensions[1];
+                double depth = package.Dimensions[2];
+                double weight = package.Weight;
+
+                Envelopes selectedEnvelope = Envelopes.GetEnvelopeSize(length, width, depth, weight, envelopeSizes);
+
+                if (selectedEnvelope != null)
+                {
+                    Console.WriteLine($"Package: {package.Description}");
+                    Console.WriteLine($"Selected envelope size: {selectedEnvelope.Name}");
+                    Console.WriteLine($"Price: {selectedEnvelope.Price}");
+                    Console.WriteLine();
+                }
+                else
+                {
+                    Console.WriteLine($"No suitable envelope found for package: {package.Description}");
+                }
+            }
     }
-    else if ( lentgh + breadth + depth <= 900 && weight is > 350 and <= 2000)
-    {
-        if (weight is > 350 and <= 1000 )
-        {
-            
-        }
-        else if (weight is > 1000 and <= 2000 )
-        {
-            
-        }
-        
-        if (weight <= 20 && breadth <= 20)
-        {
-            
-        }
-        else if (weight is > 20 and <= 50 && breadth is > 20 and <= 70)
-        {
-            
-        }
-        else if (weight is > 50 and <= 100 && breadth is > 20 and <= 70)
-        {
-            
-        }
-        else if (weight is > 100 and <= 350 &&  breadth is > 20 and <= 70)
-        {
-            
-        }
-    }
-    else if ( breadth is > 2000 and <= 12000 && weight is > 349 and <= 2000 )
-    {
-        
-    }
-    else if ( breadth is > 12000 and <= 25000 && lentgh <= 3500 && depth <= 12000 && weight < 5000 )
-    {
-        
-    }
-    
 }
