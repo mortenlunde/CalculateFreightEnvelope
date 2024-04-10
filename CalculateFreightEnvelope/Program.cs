@@ -24,40 +24,60 @@ class Program
             .AddJsonFile("AppSettings.json")
             .Build();
 
-        string jsonFile = configuration["EnvelopesJSON"] ?? throw new ArgumentException("Missing EnvelopesJSON file path in AppSettings.json");
         string itemsJson = configuration["ItemsJSON"] ?? throw new ArgumentException("Missing ItemsJSON file path in AppSettings.json");
 
-        List<Envelopes> envelopeSizes = Envelopes.LoadEnvelopeSizes(jsonFile);
+        string envelopesJson = configuration["EnvelopesJSON"] ?? throw new ArgumentException("Missing EnvelopesJSON file path in AppSettings.json");
+        string boxesJson = configuration["BoxesJSON"] ?? throw new ArgumentException("Missing BoxesJSON file path in AppSettings.json");
+
+        List<Envelopes> envelopeSizes = Envelopes.LoadEnvelopeSizes(envelopesJson);
+        List<Boxes> boxSizes = Boxes.LoadBoxSizes(boxesJson);
 
         string json;
-        using (StreamReader sr = new StreamReader(itemsJson))
+        using (StreamReader sr = new(itemsJson))
         {
             json = sr.ReadToEnd();
         }
         PackageData? packageData = JsonConvert.DeserializeObject<PackageData>(json);
 
         // Iterate through each package and find the appropriate envelope size
-        if (packageData != null)
-            foreach (Package package in packageData.Packages)
+        if (packageData == null) return;
+        if (packageData.Packages == null) return;
+        foreach (Package package in packageData.Packages)
+        {
+            if (package.Dimensions == null) continue;
+            double length = package.Dimensions[0];
+            double width = package.Dimensions[1];
+            double depth = package.Dimensions[2];
+            double maxWeight = package.Weight;
+
+            Envelopes selectedEnvelope =
+                Envelopes.GetEnvelopeSize(length, width, depth, maxWeight, envelopeSizes);
+            Boxes selectedBox =
+                Boxes.GetBoxSize(length, width, depth, maxWeight, boxSizes);
+
+            
+
+            if (selectedEnvelope != null)
             {
-                double length = package.Dimensions[0];
-                double width = package.Dimensions[1];
-                double depth = package.Dimensions[2];
-                double weight = package.Weight;
-
-                Envelopes selectedEnvelope = Envelopes.GetEnvelopeSize(length, width, depth, weight, envelopeSizes);
-
-                if (selectedEnvelope != null)
+                Console.WriteLine($"Produkt: {package.Description}");
+                Console.WriteLine($"Passer i konvolutt: {selectedEnvelope.Name}");
+                Console.WriteLine($"Pris konvolutt: {selectedEnvelope.Price},-");
+                Console.WriteLine($"Pris frakt: ");
+                Console.WriteLine();
+            }
+            else
+            {
+                if (selectedBox != null)
                 {
-                    Console.WriteLine($"Package: {package.Description}");
-                    Console.WriteLine($"Selected envelope size: {selectedEnvelope.Name}");
-                    Console.WriteLine($"Price: {selectedEnvelope.Price}");
+                    Console.WriteLine($"Produkt: {package.Description}");
+                    Console.WriteLine($"Passer i eske: {selectedBox.Name}");
+                    Console.WriteLine($"Pris eske: {selectedBox.Price},-");
+                    Console.WriteLine($"Pris frakt: ");
                     Console.WriteLine();
                 }
-                else
-                {
-                    Console.WriteLine($"No suitable envelope found for package: {package.Description}");
-                }
             }
+
+            
+        }
     }
 }

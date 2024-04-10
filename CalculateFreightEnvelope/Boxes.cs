@@ -1,50 +1,36 @@
-﻿namespace CalculateFreightEnvelope;
+﻿using Newtonsoft.Json;
 
-public class Boxes
+namespace CalculateFreightEnvelope;
+
+public record Boxes(string? Name, int Length, int Width, int Depth, double MaxWeight, double Price)
 {
-    static int length;
-    static int width;
-    static int depth;
-    static double weight;
-    static double price;
+    public readonly string? Name = Name;
+    public readonly int Length = Length;
+    public readonly int Width = Width;
+    public readonly int Depth = Depth;
+    public readonly double MaxWeight = MaxWeight;
+    public readonly double Price = Price;
     
-    static void BoxMini()
+    
+    public static List<Boxes> LoadBoxSizes(string jsonFile)
     {
-        length = 240;
-        width = 159;
-        depth = 60;
-        weight = 67;
-
-        price = 18;
+        using StreamReader r = new(jsonFile);
+        string json = r.ReadToEnd();
+        return JsonConvert.DeserializeObject<List<Boxes>>(json) ?? throw new InvalidOperationException();
     }
     
-    static void BoxSmall()
+    public static Boxes GetBoxSize(double length, double width, double depth, double max_weight, List<Boxes> sizes)
     {
-        length = 332;
-        width = 246;
-        depth = 65;
-        weight = 125.5;
-
-        price = 20;
-    }
-    
-    static void BoxLarge()
-    {
-        length = 500;
-        width = 300;
-        depth = 200;
-        weight = 359;
-
-        price = 27;
-    }
-    
-    static void NorgespakkeLiten()
-    {
-        length = 350;
-        width = 250;
-        depth = 120;
-        weight = 191;
-
-        price = 24;
+        foreach (Boxes boxes in sizes)
+        {
+            if (length <= boxes.Length &&
+                width <= boxes.Width &&
+                depth <= boxes.Depth &&
+                max_weight <= boxes.MaxWeight)
+            {
+                return boxes;
+            }
+        }
+        return null; // No suitable envelope found
     }
 }

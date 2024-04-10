@@ -1,0 +1,34 @@
+[
+  {
+    "name": "Mini",
+    "length": 240,
+    "width": 159,
+    "depth": 60,
+    "maxWeight": 9999,
+    "price": 18
+  },
+  {
+    "name": "Small",
+    "length": 332,
+    "width": 246,
+    "depth": 65,
+    "maxWeight": 9999,
+    "price": 20
+  },
+  {
+    "name": "Stor",
+    "length": 500,
+    "width": 300,
+    "depth": 200,
+    "maxWeight": 9999,
+    "price": 27
+  },
+  {
+    "name": "Norgespakken Liten",
+    "length": 350,
+    "width": 250,
+    "depth": 120,
+    "maxWeight": 9999,
+    "price": 24
+  }
+]
