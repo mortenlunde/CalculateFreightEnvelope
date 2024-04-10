@@ -1,0 +1,46 @@
+{
+
+  "boxes": [
+    {
+      "Size": "XS",
+      "Length": 160,
+      "Width": 110,
+      "Depth": 20,
+      "Weight": 2200,
+      "Price": 2.99
+    },
+    {
+      "Size": "S",
+      "Length": 210,
+      "Width": 150,
+      "Depth": 20,
+      "Weight": 2200,
+      "Price": 2.99
+    },
+    {
+      "Size": "M",
+      "Length": 260,
+      "Width": 180,
+      "Depth": 20,
+      "Weight": 2200,
+      "Price": 5.90
+    },
+    {
+      "Size": "L",
+      "Length": 360,
+      "Width": 270,
+      "Depth": 20,
+      "Weight": 2200,
+      "Price": 8.50
+    },
+    {
+      "Size": "XL",
+      "Length": 470,
+      "Width": 350,
+      "Depth": 20,
+      "Weight": 2200,
+      "Price": 15
+    }
+  ]
+
+}

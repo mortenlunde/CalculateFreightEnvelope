@@ -1,0 +1,28 @@
+{
+  "envelopes": [
+    {
+      "Name": "Small",
+      "Length": 160,
+      "Width": 110,
+      "Depth": 20,
+      "Weight": 2200,
+      "Price": 1.99
+    },
+    {
+      "Name": "Medium",
+      "Length": 210,
+      "Width": 150,
+      "Depth": 20,
+      "Weight": 2200,
+      "Price": 2.99
+    },
+    {
+      "Name": "Large",
+      "Length": 260,
+      "Width": 180,
+      "Depth": 20,
+      "Weight": 2200,
+      "Price": 4.90
+    }
+  ]
+}

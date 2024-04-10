@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
+using PostLibrary.Services;
 
 namespace CalculateFreightEnvelope;
 
@@ -20,6 +21,25 @@ class Program
 {
     private static void Main()
     {
+        string boxFileName = "TestJson.json";
+        string envelopeFileName = "TestJsonEnvelope.json";
+
+        var packageData = new PackageService();
+        var boxes = packageData.GetBoxes(boxFileName);
+        var envelopes = packageData.GetEnvelopes(envelopeFileName);
+
+        Console.WriteLine("BOXES");
+        foreach (var box in boxes)
+        {
+            Console.WriteLine($"{box.Size} - {box.Price}");
+        }
+
+        Console.WriteLine("ENVELOPES");
+        foreach (var envelope in envelopes)
+        {
+            Console.WriteLine($"{envelope.Name} - {envelope.Price}");
+        }
+        /*
         IConfiguration configuration = new ConfigurationBuilder()
             .AddJsonFile("AppSettings.json")
             .Build();
@@ -58,6 +78,7 @@ class Program
                 {
                     Console.WriteLine($"No suitable envelope found for package: {package.Description}");
                 }
-            }
-    }
+            }*/
+    } 
+    
 }
