@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalculateFreightEnvelope", "CalculateFreightEnvelope\CalculateFreightEnvelope.csproj", "{A4C39B2A-EC6C-488F-B609-20CF48D9F4D4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PostLibrary", "PostLibrary\PostLibrary.csproj", "{F120CE5D-7CF6-4154-811F-00803C5051F0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{A4C39B2A-EC6C-488F-B609-20CF48D9F4D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A4C39B2A-EC6C-488F-B609-20CF48D9F4D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A4C39B2A-EC6C-488F-B609-20CF48D9F4D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F120CE5D-7CF6-4154-811F-00803C5051F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F120CE5D-7CF6-4154-811F-00803C5051F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F120CE5D-7CF6-4154-811F-00803C5051F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F120CE5D-7CF6-4154-811F-00803C5051F0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
