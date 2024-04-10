@@ -4,7 +4,7 @@
     "length": 240,
     "width": 159,
     "depth": 60,
-    "maxWeight": 9999,
+    "addedWeight": 67,
     "price": 18
   },
   {
@@ -12,7 +12,7 @@
     "length": 332,
     "width": 246,
     "depth": 65,
-    "maxWeight": 9999,
+    "addedWeight": 125.5,
     "price": 20
   },
   {
@@ -20,7 +20,7 @@
     "length": 500,
     "width": 300,
     "depth": 200,
-    "maxWeight": 9999,
+    "addedWeight": 359,
     "price": 27
   },
   {
@@ -28,7 +28,7 @@
     "length": 350,
     "width": 250,
     "depth": 120,
-    "maxWeight": 9999,
+    "addedWeight": 191,
     "price": 24
   }
 ]

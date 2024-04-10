@@ -2,12 +2,17 @@
 
 public class Calculations
 {
-    static  void CalculateFreight(int l, int b, int h, int w)
+    public static int CalculateFreight(double l, double b, double h, double w)
     {
-        int length = l;
-        int breadth = b;
-        int depth = h;
-        int weight = w;
+        double length = l;
+        double breadth = b;
+        double depth = h;
+        double weight = w;
+
+        int priceFreight = 0;
+
+        if (length < 500 && weight < 200)
+            priceFreight = 45;
     
     
         // up to 35cm x 25cm x 7cm
@@ -16,36 +21,36 @@ public class Calculations
         {
             if (weight <= 20 && breadth <= 20)
             {
-                
+                priceFreight = 50;
             }
             else if (weight is > 20 and <= 50 && breadth <= 20)
             {
-                
+                priceFreight = 50;
             }
             else if (weight is > 50 and <= 100 && breadth <= 20)
-            {
-                
+            { 
+                priceFreight = 50;
             }
             else if (weight is > 100 and <= 350 &&  breadth <= 20)
-            {
-                
+            { 
+                priceFreight = 50;
             }
             
             if (weight <= 20 && breadth <= 20)
             {
-                
+                priceFreight = 50;
             }
             else if (weight is > 20 and <= 50 && breadth is > 20 and <= 70)
             {
-                
+                priceFreight = 50;
             }
             else if (weight is > 50 and <= 100 && breadth is > 20 and <= 70)
             {
-                
+                priceFreight = 50;
             }
             else if (weight is > 100 and <= 350 &&  breadth is > 20 and <= 70)
             {
-                
+                priceFreight = 50;
             }
         }
         
@@ -86,6 +91,8 @@ public class Calculations
         {
             
         }
-        
+
+        return priceFreight;
     }
+    
 }

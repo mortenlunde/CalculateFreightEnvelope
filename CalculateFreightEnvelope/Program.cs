@@ -51,9 +51,9 @@ class Program
             double maxWeight = package.Weight;
 
             Envelopes selectedEnvelope =
-                Envelopes.GetEnvelopeSize(length, width, depth, maxWeight, envelopeSizes);
+                Envelopes.GetEnvelopeSize(length, width, depth, envelopeSizes);
             Boxes selectedBox =
-                Boxes.GetBoxSize(length, width, depth, maxWeight, boxSizes);
+                Boxes.GetBoxSize(length, width, depth, boxSizes);
 
             
 
@@ -62,7 +62,7 @@ class Program
                 Console.WriteLine($"Produkt: {package.Description}");
                 Console.WriteLine($"Passer i konvolutt: {selectedEnvelope.Name}");
                 Console.WriteLine($"Pris konvolutt: {selectedEnvelope.Price},-");
-                Console.WriteLine($"Pris frakt: ");
+                Console.WriteLine($"Pris frakt: {Calculations.CalculateFreight(package.Dimensions[0], package.Dimensions[1], package.Dimensions[2], package.Weight).ToString()},-");
                 Console.WriteLine();
             }
             else
@@ -72,12 +72,10 @@ class Program
                     Console.WriteLine($"Produkt: {package.Description}");
                     Console.WriteLine($"Passer i eske: {selectedBox.Name}");
                     Console.WriteLine($"Pris eske: {selectedBox.Price},-");
-                    Console.WriteLine($"Pris frakt: ");
+                    Console.WriteLine($"Pris frakt: {Calculations.CalculateFreight(package.Dimensions[0], package.Dimensions[1], package.Dimensions[2], package.Weight).ToString()},-");
                     Console.WriteLine();
                 }
             }
-
-            
         }
     }
 }
