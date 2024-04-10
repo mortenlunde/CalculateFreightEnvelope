@@ -2,15 +2,14 @@
 
 namespace CalculateFreightEnvelope;
 
-public record Boxes(string? Name, int Length, int Width, int Depth, double Price, double addedWeight)
+public record Boxes(string? Name, int Length, int Width, int Depth, double Price, double AddedWeight)
 {
     public readonly string? Name = Name;
     public readonly int Length = Length;
     public readonly int Width = Width;
     public readonly int Depth = Depth;
     public readonly double Price = Price;
-    public readonly double adWeight = addedWeight;
-    
+    public readonly double AddedWeight = AddedWeight;
     
     public static List<Boxes> LoadBoxSizes(string jsonFile)
     {

@@ -25,7 +25,6 @@ class Program
             .Build();
 
         string itemsJson = configuration["ItemsJSON"] ?? throw new ArgumentException("Missing ItemsJSON file path in AppSettings.json");
-
         string envelopesJson = configuration["EnvelopesJSON"] ?? throw new ArgumentException("Missing EnvelopesJSON file path in AppSettings.json");
         string boxesJson = configuration["BoxesJSON"] ?? throw new ArgumentException("Missing BoxesJSON file path in AppSettings.json");
 
@@ -61,7 +60,7 @@ class Program
                 Console.WriteLine($"Produkt: {package.Description}");
                 Console.WriteLine($"Passer i konvolutt: {selectedEnvelope.Name}");
                 Console.WriteLine($"Pris konvolutt: {selectedEnvelope.Price},-");
-                Console.WriteLine($"Pris frakt: {Calculations.CalculateFreight(package.Dimensions[0], package.Dimensions[1], package.Dimensions[2], package.Weight).ToString()},-");
+                Console.WriteLine($"Pris frakt: {Calculations.CalculateFreight(package.Dimensions[0], package.Dimensions[1], package.Dimensions[2], package.Weight, selectedEnvelope.AddedWeight).ToString()},-");
                 Console.WriteLine();
             }
             else
@@ -71,7 +70,7 @@ class Program
                     Console.WriteLine($"Produkt: {package.Description}");
                     Console.WriteLine($"Passer i eske: {selectedBox.Name}");
                     Console.WriteLine($"Pris eske: {selectedBox.Price},-");
-                    Console.WriteLine($"Pris frakt: {Calculations.CalculateFreight(package.Dimensions[0], package.Dimensions[1], package.Dimensions[2], package.Weight).ToString()},-");
+                    Console.WriteLine($"Pris frakt: {Calculations.CalculateFreight(package.Dimensions[0], package.Dimensions[1], package.Dimensions[2], package.Weight, selectedBox.AddedWeight).ToString()},-");
                     Console.WriteLine();
                 }
             }
