@@ -48,7 +48,6 @@ class Program
             double length = package.Dimensions[0];
             double width = package.Dimensions[1];
             double depth = package.Dimensions[2];
-            double maxWeight = package.Weight;
 
             Envelopes selectedEnvelope =
                 Envelopes.GetEnvelopeSize(length, width, depth, envelopeSizes);
